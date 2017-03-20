@@ -8,7 +8,7 @@ using PersonManager.Model.Models;
 
 namespace PersonManager.Model.Repositories
 {
-    public class UserRepository
+    public class UserRepository :IUserRepository
     {
 
         private readonly string _connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;

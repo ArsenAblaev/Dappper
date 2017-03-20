@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.Http;
+using WebApplication1.Configs;
 
 namespace WebApplication1
 {
@@ -8,6 +9,7 @@ namespace WebApplication1
         protected void Application_Start(object sender, EventArgs e)
         {
             GlobalConfiguration.Configuration.Routes.MapHttpRoute("MyRoute", "{controller}");
+            AutofacConfig.Configure();
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Configuration;
 using System.Web.Http;
 using PersonManager.Model.Models;
 using PersonManager.Model.Repositories;
@@ -8,11 +7,11 @@ namespace WebApplication1.Controllers
 {
     public class UserController : ApiController
     {
-        private readonly UserRepository _userRepository;
-        
-        public UserController()
+        private readonly IUserRepository _userRepository;
+
+        public UserController(IUserRepository userRepository)
         {
-            _userRepository = new UserRepository();
+            _userRepository = userRepository;
         }
         public IEnumerable<User> Get()
         {
