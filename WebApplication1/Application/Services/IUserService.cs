@@ -10,5 +10,6 @@ namespace WebApplication1.Application.Services
         void DeleteUser(int userId);
         void UpdateUser(User user);
         User Add(User user);
+        void RemoveTop(int count);
     }
 }

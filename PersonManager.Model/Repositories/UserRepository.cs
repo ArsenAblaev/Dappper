@@ -59,5 +59,14 @@ namespace PersonManager.Model.Repositories
                 db.Execute(sqlQuery, new { id });
             }
         }
+
+        public void RemoveTop(int count)
+        {
+            using (IDbConnection db = new SqlConnection(_connectionString))
+            {
+                var sqlQuery = "with cte as (select top @count * from Users) delete from cte";
+                db.Execute(sqlQuery, new { count });
+            }
+        }
     }
 }

@@ -36,5 +36,10 @@ namespace WebApplication1.Application.Services
         {
             return _userRepository.Create(user);
         }
+
+        public void RemoveTop(int count)
+        {
+            _userRepository.RemoveTop(count);
+        }
     }
 }

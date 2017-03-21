@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Net;
+using System.Net.Http;
 using System.Web.Http;
 using PersonManager.Model.Models;
 using WebApplication1.Application.Services;
@@ -16,6 +18,13 @@ namespace WebApplication1.Controllers
         public IEnumerable<User> Get()
         {
             return _userService.GetUsers();
+        }
+
+        
+        public HttpResponseMessage Delete(int count)
+        {
+            _userService.RemoveTop(count);
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
 
         #region Post Put Update
