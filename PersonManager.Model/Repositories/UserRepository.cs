@@ -8,11 +8,10 @@ using PersonManager.Model.Models;
 
 namespace PersonManager.Model.Repositories
 {
-    public class UserRepository :IUserRepository
+    public class UserRepository : IUserRepository
     {
-
         private readonly string _connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-        public List<User> GetUsers()
+        public IList<User> GetUsers()
         {
             List<User> users;
             using (IDbConnection db = new SqlConnection(_connectionString))
@@ -24,7 +23,7 @@ namespace PersonManager.Model.Repositories
 
         public User Get(int id)
         {
-            User user = null;
+            User user;
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 user = db.Query<User>("SELECT * FROM Users WHERE Id = @id", new { id }).FirstOrDefault();

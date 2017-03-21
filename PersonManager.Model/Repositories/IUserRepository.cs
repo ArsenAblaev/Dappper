@@ -1,14 +1,9 @@
-﻿using System.Collections.Generic;
-using PersonManager.Model.Models;
+﻿using PersonManager.Model.Models;
+using PersonManager.Model.Repositories.Base;
 
 namespace PersonManager.Model.Repositories
 {
-    public interface IUserRepository
+    public interface IUserRepository : IBaseRepository<User>
     {
-        List<User> GetUsers();
-        User Get(int id);
-        User Create(User user);
-        void Update(User user);
-        void Delete(int id);
     }
 }
