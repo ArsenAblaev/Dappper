@@ -11,7 +11,7 @@ namespace PersonManager.Model.Repositories
     public class UserRepository : IUserRepository
     {
         private readonly string _connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-        public IList<User> GetUsers()
+        public IList<User> GetList()
         {
             List<User> users;
             using (IDbConnection db = new SqlConnection(_connectionString))

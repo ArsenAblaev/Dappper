@@ -1,22 +1,24 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
 using PersonManager.Model.Models;
-using PersonManager.Model.Repositories;
+using WebApplication1.Application.Services;
 
 namespace WebApplication1.Controllers
 {
     public class UserController : ApiController
     {
-        private readonly IUserRepository _userRepository;
+        private readonly IUserService _userService;
 
-        public UserController(IUserRepository userRepository)
+        public UserController(IUserService userService)
         {
-            _userRepository = userRepository;
+            _userService = userService;
         }
         public IEnumerable<User> Get()
         {
-            return _userRepository.GetUsers();
+            return _userService.GetUsers();
         }
+
+        #region Post Put Update
 
         //public HttpResponseMessage Post([FromBody]Person person)
         //{
@@ -70,5 +72,6 @@ namespace WebApplication1.Controllers
         //        return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exception.Message);
         //    }
         //}
+        #endregion
     }
 }

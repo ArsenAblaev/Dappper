@@ -2,9 +2,9 @@
 
 namespace PersonManager.Model.Repositories.Base
 {
-    public interface IBaseRepository<TEntity>
+    public interface IRepository<TEntity> 
     {
-        IList<TEntity> GetUsers();
+        IList<TEntity> GetList();
         TEntity Get(int id);
         TEntity Create(TEntity user);
         void Update(TEntity user);

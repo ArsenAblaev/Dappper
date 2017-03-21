@@ -3,7 +3,5 @@ using PersonManager.Model.Repositories.Base;
 
 namespace PersonManager.Model.Repositories
 {
-    public interface IUserRepository : IBaseRepository<User>
-    {
-    }
+    public interface IUserRepository : IRepository<User> { }
 }
