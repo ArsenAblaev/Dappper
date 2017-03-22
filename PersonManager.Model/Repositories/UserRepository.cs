@@ -10,13 +10,20 @@ namespace PersonManager.Model.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        private readonly string _connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+        private readonly IDbConnection _dataBase;
+
+        public UserRepository(IDbConnection dataBase)
+        {
+            _dataBase = dataBase;
+        }
         public IList<User> GetList()
         {
             List<User> users;
-            using (IDbConnection db = new SqlConnection(_connectionString))
+
+            using (_dataBase)
             {
-                users = db.Query<User>("SELECT * FROM Users").ToList();
+                users = _dataBase.Query<User>("SELECT * FROM Users").ToList();
+                var user = _dataBase.QueryFirst<User>("select * from Users");
             }
             return users;
         }
@@ -24,19 +31,19 @@ namespace PersonManager.Model.Repositories
         public User Get(int id)
         {
             User user;
-            using (IDbConnection db = new SqlConnection(_connectionString))
+            using (_dataBase)
             {
-                user = db.Query<User>("SELECT * FROM Users WHERE Id = @id", new { id }).FirstOrDefault();
+                user = _dataBase.QueryFirst<User>("SELECT * FROM Users WHERE Id = @id", new { id });
             }
             return user;
         }
 
         public User Create(User user)
         {
-            using (IDbConnection db = new SqlConnection(_connectionString))
+            using (_dataBase)
             {
                 var sqlQuery = "INSERT INTO Users (Name, Age) VALUES(@Name, @Age); SELECT CAST(SCOPE_IDENTITY() as int)";
-                int? userId = db.Query<int>(sqlQuery, user).FirstOrDefault();
+                int? userId = _dataBase.Query<int>(sqlQuery, user).FirstOrDefault();
                 user.Id = (int)userId;
             }
             return user;
@@ -44,28 +51,28 @@ namespace PersonManager.Model.Repositories
 
         public void Update(User user)
         {
-            using (IDbConnection db = new SqlConnection(_connectionString))
+            using (_dataBase)
             {
                 var sqlQuery = "UPDATE Users SET Name = @Name, Age = @Age WHERE Id = @Id";
-                db.Execute(sqlQuery, user);
+                _dataBase.Execute(sqlQuery, user);
             }
         }
 
         public void Delete(int id)
         {
-            using (IDbConnection db = new SqlConnection(_connectionString))
+            using (_dataBase)
             {
                 var sqlQuery = "DELETE FROM Users WHERE Id = @id";
-                db.Execute(sqlQuery, new { id });
+                _dataBase.Execute(sqlQuery, new { id });
             }
         }
 
         public void RemoveTop(int count)
         {
-            using (IDbConnection db = new SqlConnection(_connectionString))
+            using (_dataBase)
             {
                 var sqlQuery = "with cte as (select top @count * from Users) delete from cte";
-                db.Execute(sqlQuery, new { count });
+                _dataBase.Execute(sqlQuery, new { count });
             }
         }
     }

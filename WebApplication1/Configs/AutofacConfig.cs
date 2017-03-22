@@ -1,4 +1,7 @@
-﻿using System.Reflection;
+﻿using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Reflection;
 using System.Web.Http;
 using Autofac;
 using Autofac.Integration.WebApi;
@@ -23,8 +26,12 @@ namespace WebApplication1.Configs
 
         private static void RegisterTypes(ContainerBuilder builder)
         {
+
             builder.RegisterType<UserRepository>().As<IUserRepository>();
             builder.RegisterType<UserService>().As<IUserService>();
+
+            builder.RegisterInstance(new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+                .As<IDbConnection>();
         }
     }
 }

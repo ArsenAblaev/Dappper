@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using PersonManager.Model.Models;
 using WebApplication1.Application.Services;
@@ -11,20 +9,21 @@ namespace WebApplication1.Controllers
     {
         private readonly IUserService _userService;
 
-        public UserController(IUserService userService)
+        public UserController(IUserService userService, Car car)
         {
             _userService = userService;
         }
         public IEnumerable<User> Get()
         {
+
             return _userService.GetUsers();
         }
 
-        
-        public HttpResponseMessage Delete(int count)
+        [HttpDelete]
+        public void Delete(int id)
         {
-            _userService.RemoveTop(count);
-            return Request.CreateResponse(HttpStatusCode.OK);
+            _userService.RemoveTop(id);
+            // return Request.CreateResponse(HttpStatusCode.OK);
         }
 
         #region Post Put Update
