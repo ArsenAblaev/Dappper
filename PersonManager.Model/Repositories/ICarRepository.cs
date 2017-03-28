@@ -3,8 +3,7 @@ using PersonManager.Model.Repositories.Base;
 
 namespace PersonManager.Model.Repositories
 {
-    public interface IUserRepository : IRepository<User>
+    public interface ICarRepository : IRepository<Car>
     {
-       
     }
 }

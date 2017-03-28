@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Configuration;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Dapper;
 using PersonManager.Model.Models;
 
@@ -16,14 +16,13 @@ namespace PersonManager.Model.Repositories
         {
             _dataBase = dataBase;
         }
-        public IList<User> GetList()
+        public List<User> GetList()
         {
             List<User> users;
 
             using (_dataBase)
             {
                 users = _dataBase.Query<User>("SELECT * FROM Users").ToList();
-                var user = _dataBase.QueryFirst<User>("select * from Users");
             }
             return users;
         }
@@ -64,15 +63,6 @@ namespace PersonManager.Model.Repositories
             {
                 var sqlQuery = "DELETE FROM Users WHERE Id = @id";
                 _dataBase.Execute(sqlQuery, new { id });
-            }
-        }
-
-        public void RemoveTop(int count)
-        {
-            using (_dataBase)
-            {
-                var sqlQuery = "with cte as (select top @count * from Users) delete from cte";
-                _dataBase.Execute(sqlQuery, new { count });
             }
         }
     }

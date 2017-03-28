@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonManager.Web", "WebApp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonManager.Model", "PersonManager.Model\PersonManager.Model.csproj", "{BBA06A1C-524C-49E1-A4C0-F1EF3B19EBB3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonManager.Console", "PersonManager.Console\PersonManager.Console.csproj", "{8736CF3B-DE4E-430D-951A-0135761E33E6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{BBA06A1C-524C-49E1-A4C0-F1EF3B19EBB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BBA06A1C-524C-49E1-A4C0-F1EF3B19EBB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BBA06A1C-524C-49E1-A4C0-F1EF3B19EBB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8736CF3B-DE4E-430D-951A-0135761E33E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8736CF3B-DE4E-430D-951A-0135761E33E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8736CF3B-DE4E-430D-951A-0135761E33E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8736CF3B-DE4E-430D-951A-0135761E33E6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
